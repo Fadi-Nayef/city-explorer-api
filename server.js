@@ -9,6 +9,7 @@ const express = require ('express');//require express (npm i express)
 const weatherData =require ('./data/weather.json');//require json file
 
 const cors = require('cors');//require Cross-Origin Resource Sharing(npm i cors)
+const { query } = require('express');
 
 const server = express();
 
@@ -20,40 +21,40 @@ server.get('/',(req,res) => {
     res.send('Test')
 })
 
+// server.get('/test',(req,res) => {let first=req.query.first; 
+//     console.log(query,first);})
 
-// http://localhost:5000/weather?cityName=Paris
+// http://localhost:5000/weather?searchQuery=Paris
 server.get('/weather',(request,response) => {
-    let cityName = request.query.cityName;
+    let {searchQuery} = request.query;
 
-console.log(query,cityName);
+console.log(query,searchQuery);
 
-    let resData = weatherData.find(item,idx => {if (item.city_name == cityName)        
-            return item;
-    })
-    console.log('------------------------------------',resData,'-------------------------------------');
-    try {
-        let newForcast;
-        let forcastArr=[];
+    let resData = weatherData.find(item => item.city_name=== searchQuery  )     
+            
+            console.log('------------------------------------',resData,'-------------------------------------');
+            try {
+                let newForcast;
+                let forcastArr=[];
+                
+                forcastArr = resData.data.map (item => { 
+                    // date = item.valid_date;
+                    // description=item.weather.desqription;
+                    newForcast = new Forcast(item);
+                    return newForcast;
+                })
+                response.send(forcastArr)
+            }catch(error){
+                
+                response.send(`server error ${error}`)
+            }
+            
+        })
+            
 
-         forcastArr = resData.data.map (item => { 
-             data = item.valid_date;
-             description=item.weather.desqription;
-             newForcast = new Forcast(date,desqription);
-             return newForcast;
-         })
-         response.send(resData)
-    }catch(error){
-
-        response.send(`server error ${error}`)
-    }
-
-})
-
-
-class Forcast { constructor(date,desqription ){
-this.date = date
-this.desqription = desqription
-}
+function Forcast (day){
+    this.date=day.valid_date
+    this.description=day.weather.description
 }
 
 server.get('*',(request,response) => {
