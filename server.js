@@ -112,10 +112,18 @@ function Forcast (day){
 }
 function Movie (item){
  this.title=item.title;
+ this.overview=item.overview;
+ this.average_votes=item.average_votes;
+ this.total_votes=item.total_votes;
+ this.image_url=item.image_url;
+ this.popularity=item.popularity;
+ this.released_on=item.released_on;
+
 }
 function Weather (weatherItem){
-// this.name=weatherItem.city_name;
+this.name=weatherItem.city_name;
 this.description=weatherItem.weather.description;
+this.datetime=weatherItem.datetime;
 }
 
 server.get('*',(request,response) => {
