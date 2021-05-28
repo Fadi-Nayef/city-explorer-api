@@ -115,11 +115,11 @@ function Forcast (day){
 function Movie (item){
  this.title=item.title;
  this.overview=item.overview;
- this.average_votes=item.average_votes;
- this.total_votes=item.total_votes;
+ this.average_votes=item.vote_average;
+ this.total_votes=item.vote_count;
  this.image_url=item.poster_path;
  this.popularity=item.popularity;
- this.released_on=item.released_on;
+ this.released_on=item.release_date;
 
 }
 function Weather (weatherItem){
