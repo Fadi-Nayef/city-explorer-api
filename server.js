@@ -110,12 +110,14 @@ function Forcast (day){
     this.date=day.valid_date
     this.description=day.weather.description
 }
+
+
 function Movie (item){
  this.title=item.title;
  this.overview=item.overview;
  this.average_votes=item.average_votes;
  this.total_votes=item.total_votes;
- this.image_url=item.image_url;
+ this.image_url=item.poster_path;
  this.popularity=item.popularity;
  this.released_on=item.released_on;
 
