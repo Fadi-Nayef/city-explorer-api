@@ -6,10 +6,10 @@ module.exports = bitWeatherHandler;
 let inMemo={};
 
 function bitWeatherHandler(req,res){
-    let {searchQuery}=(req.query);
+    let {searchQuery,lat,lon}=(req.query);
     let weatherKey=process.env.weather_key;
     let weatherUrl =`https://api.weatherbit.io/v2.0/current?city=${searchQuery}&key=${weatherKey}&include=hourly`;
-    // `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${weatherKey}&include=minutely`
+    // `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${weatherKey}&include=hourly`
 if (inMemo[searchQuery] !== undefined ){
     res.send(inMemo[searchQuery]);
 }else{

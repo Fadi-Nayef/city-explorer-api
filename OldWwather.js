@@ -11,7 +11,7 @@ function weatherHandler (request,response){
 
     console.log(request.query,searchQuery);
 
-    let resData = weatherData.find(item => item.city_name === searchQuery  )     
+    let resData = weatherData.find(item => item.city_name.toUpperCase() === searchQuery.toUpperCase()  )     
             
             console.log('------------------------------------',resData,'-------------------------------------');
             try {
